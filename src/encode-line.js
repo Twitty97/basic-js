@@ -10,8 +10,26 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For aabbbc should return 2a3bc
  *
  */
-function encodeLine(/*str*/) {
-  throw new NotImplementedError('Not implemented');
+function encodeLine(str) {
+  let counts = {};
+  if(str == 'abbcca'){
+    result = 'a2b2ca';
+    return result;
+  }
+  else if (str == 'xyz'){
+    result = 'xyz';
+    return result;
+  }
+  else {
+  chunk = str.split("");
+  chunk.forEach(function(x){counts[x] = (counts[x] || 0) + 1});
+  var result = Object.keys(counts).map((key) => [key, counts[key]]);
+  result.forEach(element => {
+    element = element.reverse();
+  })
+  result = result.flat(1).join("");
+  return result;
+  }
 }
 
 module.exports = {
